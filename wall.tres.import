@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://grl3q1x5vr8a"
-path="res://.godot/imported/wall.tres.glb-e7b6eb68556b643159f5ca6fb19f82e6.scn"
+valid=false
 
 [deps]
 
-source_file="res://wall.tres.glb"
-dest_files=["res://.godot/imported/wall.tres.glb-e7b6eb68556b643159f5ca6fb19f82e6.scn"]
+source_file="res://wall.tres"
 
 [params]
 
@@ -38,5 +37,3 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}
-gltf/naming_version=2
-gltf/embedded_image_handling=1

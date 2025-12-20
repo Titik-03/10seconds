@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkskigak5w8p5"]
+
+[ext_resource type="Script" uid="uid://buk48ud4an4pn" path="res://character_body_2d.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://cclrsgx632c5k" path="res://Assets/SHMUP-Asset-Pack-1/PNG/Ships/Variation-1/JetFighter-1.png" id="2_onrkg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqk2v"]
+size = Vector2(34.5, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_036b0"]
+size = Vector2(35, 34)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_aqk2v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-3.8146973e-06, 0)
+rotation = 1.5707964
+scale = Vector2(0.9156563, 1.03377)
+texture = ExtResource("2_onrkg")
+region_enabled = true
+region_rect = Rect2(-0.13601685, -0.081762314, 32.107014, 32.25566)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_036b0")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

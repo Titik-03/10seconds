@@ -1,32 +1,35 @@
 [gd_scene load_steps=5 format=3 uid="uid://cej6qv22f33f1"]
 
 [ext_resource type="Script" uid="uid://ck0s26s47x53i" path="res://enemy.gd" id="1_4gyqm"]
-[ext_resource type="Texture2D" uid="uid://hnbymiuu42jg" path="res://abstract-surface-textures-white-concrete-stone-wall.jpg" id="2_qi2p4"]
+[ext_resource type="Texture2D" uid="uid://b814m6ehp7rp" path="res://Assets/Pixel Nebula - Enemies Ships T1-Sprite Sheet/Enemies T1 Sprite Sheet.png" id="2_4gyqm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
-size = Vector2(13, 13)
+size = Vector2(23, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epg4t"]
-size = Vector2(13.5, 14)
+size = Vector2(23, 24)
 
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(8, 4)
 script = ExtResource("1_4gyqm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.29000002, 0.29000002, 1)
-position = Vector2(-8.035584, -4.0141454)
-scale = Vector2(-0.0021588488, 0.0032340705)
-texture = ExtResource("2_qi2p4")
+texture_filter = 1
+position = Vector2(-8, -4.0000005)
+rotation = -1.5707964
+scale = Vector2(-1.0582237, 1.5911318)
+texture = ExtResource("2_4gyqm")
+region_enabled = true
+region_rect = Rect2(5.677536, 8.113293, 21.029655, 16.250187)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-8, -4)
+position = Vector2(-9.5, -4)
 shape = SubResource("RectangleShape2D_iifgy")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-8, -4)
+position = Vector2(-9.5, -4)
 shape = SubResource("RectangleShape2D_epg4t")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
