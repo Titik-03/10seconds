@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3mk8duonocfv"]
+
+[ext_resource type="Texture2D" uid="uid://hnbymiuu42jg" path="res://abstract-surface-textures-white-concrete-stone-wall.jpg" id="1_v7oki"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8qja"]
+size = Vector2(8, 4)
+
+[node name="bullet" type="RigidBody2D" groups=["projectile"]]
+position = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.9999999)
+shape = SubResource("RectangleShape2D_v8qja")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.0013333333, 0.000859375)
+texture = ExtResource("1_v7oki")
