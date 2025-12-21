@@ -26,10 +26,15 @@ func _ready():
 	
 	print("YouWinMenu ready!")
 
-func show_you_win(final_score: int):
+func show_you_win(final_score: int, kills: int = 0, max_combo: int = 0):
 	print("=== YOU WIN MENU SHOWN === Score: ", final_score)
 	visible = true
 	get_tree().paused = true
+	
+	# Find and update the label to show stats
+	var label = find_child("PAUSED", true, false)
+	if label:
+		label.text = "YOU WIN!\n\nScore: " + str(final_score) + "\nKills: " + str(kills) + "\nMax Combo: " + str(max_combo)
 
 func _on_restart_pressed():
 	get_tree().paused = false

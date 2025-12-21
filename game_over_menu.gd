@@ -12,10 +12,15 @@ func _ready():
 	
 	print("GameOverMenu ready!")
 
-func show_game_over(final_score: int):
+func show_game_over(final_score: int, kills: int = 0, max_combo: int = 0):
 	print("=== GAME OVER MENU SHOWN ===")
 	visible = true
 	get_tree().paused = true
+	
+	# Find and update the score label to show all stats
+	var score_label = find_child("ScoreLabel", true, false)
+	if score_label:
+		score_label.text = "Score: " + str(final_score) + "\nKills: " + str(kills) + "\nMax Combo: " + str(max_combo)
 	
 	# Find and connect buttons now
 	retry_button = find_child("RetryButton", true, false)
