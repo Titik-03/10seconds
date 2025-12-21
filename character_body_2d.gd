@@ -47,14 +47,19 @@ func kill():
 	is_dead = true
 	set_physics_process(false)
 	
-	# Call game lost
+	# Call game lost on the game timer
 	var game_ui = get_tree().get_first_node_in_group("GameUI")
 	if game_ui and game_ui.has_method("game_lost"):
 		game_ui.game_lost()
 	else:
-		# Fallback if game_ui not found
-		await get_tree().create_timer(0.3).timeout
-		get_tree().reload_current_scene()
+		# Fallback: try to show game over menu directly
+		var game_over_menu = get_tree().get_first_node_in_group("GameOverMenu")
+		if game_over_menu and game_over_menu.has_method("show_game_over"):
+			game_over_menu.show_game_over(0)
+		else:
+			# Last resort fallback
+			await get_tree().create_timer(0.3).timeout
+			get_tree().reload_current_scene()
 	
 func _on_Area2D_body_entered(body: Node2D) -> void:
 	if is_dead:

@@ -1,50 +1,37 @@
 extends CanvasLayer
 
-var game_over_panel
-var retry_button
+var pause_panel
+var restart_button
 var quit_button
-var score_label
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	add_to_group("GameOverMenu")  # Add to group
+	add_to_group("YouWinMenu")  # Add to correct group
 	
-	# Find the panel with any name
-	game_over_panel = find_child("GameOverPanel", true, false)
-	if not game_over_panel:
-		game_over_panel = find_child("VBoxContainer", true, false)
+	# Hide at start
+	visible = false
 	
-	if game_over_panel:
-		game_over_panel.visible = false
-	else:
-		print("ERROR: Could not find GameOverPanel!")
-		return
+	# Find the panel
+	pause_panel = find_child("PausePanel", true, false)
 	
 	# Find buttons
-	retry_button = game_over_panel.find_child("RetryButton", true, false)
-	quit_button = game_over_panel.find_child("QuitButton", true, false)
-	score_label = game_over_panel.find_child("ScoreLabel", true, false)
+	restart_button = find_child("RestartButton", true, false)
+	quit_button = find_child("QuitButton", true, false)
 	
 	# Connect buttons
-	if retry_button:
-		retry_button.pressed.connect(_on_retry_pressed)
+	if restart_button:
+		restart_button.pressed.connect(_on_restart_pressed)
 	if quit_button:
 		quit_button.pressed.connect(_on_quit_pressed)
-
-func show_game_over(final_score: int):
-	print("show_game_over called with score: ", final_score)
-	if game_over_panel:
-		game_over_panel.visible = true
-		print("Game over panel set to visible")
-	else:
-		print("ERROR: game_over_panel is null!")
 	
-	if score_label:
-		score_label.text = "Final Score: " + str(final_score)
-	get_tree().paused = true
-	print("Game paused")
+	print("YouWinMenu ready!")
 
-func _on_retry_pressed():
+func show_you_win(final_score: int):
+	print("=== YOU WIN MENU SHOWN === Score: ", final_score)
+	visible = true
+	get_tree().paused = true
+
+func _on_restart_pressed():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 

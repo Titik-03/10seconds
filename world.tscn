@@ -682,7 +682,10 @@ label_settings = SubResource("LabelSettings_gbfbk")
 horizontal_alignment = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource("8_gbfbk")]
+visible = false
 
 [node name="GameOverMenu" parent="." instance=ExtResource("9_ioo17")]
+visible = false
 
-[node name="PauseMenu2" parent="." instance=ExtResource("10_wse8f")]
+[node name="YouWinMenu" parent="." instance=ExtResource("10_wse8f")]
+visible = false

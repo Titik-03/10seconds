@@ -9,6 +9,7 @@ var game_over = false
 @onready var score_label = $"../CanvasLayer2/Label"
 
 func _ready():
+	add_to_group("GameUI")
 	time_left = countdown_time
 	update_score_display()
 
@@ -44,27 +45,37 @@ func game_won():
 		return
 	
 	game_over = true
-	get_tree().paused = true  # Pause the game
 	print("YOU WIN! Final Score: ", score)
 	timer_label.text = "YOU WIN!"
 	timer_label.modulate = Color.GREEN
 	
-	# Wait 2 seconds then go to next level or restart
-	await get_tree().create_timer(2.0, true, false, true).timeout  # Ignore pause
-	get_tree().paused = false
-	get_tree().change_scene_to_file("res://main_menu.tscn")
+	# Show the YouWinMenu
+	var you_win_menu = get_tree().get_first_node_in_group("YouWinMenu")
+	if you_win_menu and you_win_menu.has_method("show_you_win"):
+		you_win_menu.show_you_win(score)
+	else:
+		# Fallback if menu not found
+		get_tree().paused = true
+		await get_tree().create_timer(2.0, true, false, true).timeout
+		get_tree().paused = false
+		get_tree().change_scene_to_file("res://main_menu.tscn")
 
 func game_lost():
 	if game_over:
 		return
 	
 	game_over = true
-	get_tree().paused = true  # Pause the game
 	print("GAME OVER! Final Score: ", score)
 	timer_label.text = "GAME OVER"
 	timer_label.modulate = Color.RED
 	
-	# Wait 2 seconds then restart
-	await get_tree().create_timer(2.0, true, false, true).timeout  # Ignore pause
-	get_tree().paused = false
-	get_tree().reload_current_scene()
+	# Show the GameOverMenu
+	var game_over_menu = get_tree().get_first_node_in_group("GameOverMenu")
+	if game_over_menu and game_over_menu.has_method("show_game_over"):
+		game_over_menu.show_game_over(score)
+	else:
+		# Fallback if menu not found
+		get_tree().paused = true
+		await get_tree().create_timer(2.0, true, false, true).timeout
+		get_tree().paused = false
+		get_tree().reload_current_scene()
