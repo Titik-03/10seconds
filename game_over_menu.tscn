@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://2n71hb6untk5"]
+
+[ext_resource type="Script" uid="uid://bcffn3vqbgqpk" path="res://game_over_menu.gd" id="1_14ib6"]
+[ext_resource type="FontFile" uid="uid://dwosy4274gjs" path="res://Minecraft.ttf" id="2_prwox"]
+
+[node name="GameOverMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_14ib6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 425.0
+offset_top = 233.0
+offset_right = 675.0
+offset_bottom = 483.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(-0.31, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("2_prwox")
+theme_override_font_sizes/font_size = 16
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("2_prwox")
+theme_override_font_sizes/font_size = 16
+text = "Final Score: 0"
+
+[node name="RetryButton" type="Button" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("2_prwox")
+theme_override_font_sizes/font_size = 16
+text = "Retry"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("2_prwox")
+theme_override_font_sizes/font_size = 16
+text = "Quit to Menu"
+icon_alignment = 1

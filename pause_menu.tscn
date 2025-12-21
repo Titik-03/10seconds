@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://1wfujoajwm1s"]
+
+[ext_resource type="Script" uid="uid://b3gdk2ch7p03d" path="res://pause_menu.gd" id="1_hdmo1"]
+[ext_resource type="FontFile" uid="uid://dwosy4274gjs" path="res://Minecraft.ttf" id="2_nwcfo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdmo1"]
+line_spacing = 2.74
+paragraph_spacing = 0.245
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_hdmo1")
+
+[node name="PausePanel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PausePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.00002
+offset_top = -133.00002
+offset_right = -49.000015
+offset_bottom = -33.000015
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.05, 3.05)
+alignment = 1
+
+[node name="PAUSED" type="Label" parent="PausePanel/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_nwcfo")
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_hdmo1")
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PausePanel/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9254902, 0, 1)
+theme_override_fonts/font = ExtResource("2_nwcfo")
+theme_override_font_sizes/font_size = 16
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="PausePanel/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14901961, 0.8901961, 0.078431375, 1)
+theme_override_fonts/font = ExtResource("2_nwcfo")
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="PausePanel/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87734634, 3.8745256e-06, 1.2513996e-06, 1)
+theme_override_fonts/font = ExtResource("2_nwcfo")
+text = "Quit to Menu"

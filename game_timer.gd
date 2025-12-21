@@ -20,7 +20,7 @@ func _process(delta):
 	
 	if time_left <= 0:
 		time_left = 0
-		game_won()  # Changed from time_up() to game_won()
+		game_won()
 	
 	timer_label.text = str(int(time_left))
 	
@@ -44,23 +44,27 @@ func game_won():
 		return
 	
 	game_over = true
+	get_tree().paused = true  # Pause the game
 	print("YOU WIN! Final Score: ", score)
 	timer_label.text = "YOU WIN!"
 	timer_label.modulate = Color.GREEN
 	
 	# Wait 2 seconds then go to next level or restart
-	await get_tree().create_timer(2.0).timeout
-	get_tree().change_scene_to_file("res://main_menu.tscn")  # Or next level
+	await get_tree().create_timer(2.0, true, false, true).timeout  # Ignore pause
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://main_menu.tscn")
 
 func game_lost():
 	if game_over:
 		return
 	
 	game_over = true
+	get_tree().paused = true  # Pause the game
 	print("GAME OVER! Final Score: ", score)
 	timer_label.text = "GAME OVER"
 	timer_label.modulate = Color.RED
 	
 	# Wait 2 seconds then restart
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(2.0, true, false, true).timeout  # Ignore pause
+	get_tree().paused = false
 	get_tree().reload_current_scene()
